@@ -1,0 +1,68 @@
+
+Q1. Display student details whose city is Pune
+Ans: 
+SELECT * FROM student WHERE city = 'Pune';
+
+Q2. Display student details whose city is Hyderabad or Pune
+Ans: 
+SELECT * FROM student WHERE city = 'Hyderabad' OR city = 'Pune';
+
+Q3. Display female students from Hyderabad, male students from Pune, and all students from Bangalore
+Ans: 
+SELECT * 
+FROM student 
+WHERE (gender = 'female' AND city = 'Hyderabad') 
+   OR (gender = 'male' AND city = 'Pune') 
+   OR city = 'Bangalore';
+
+Q4. Display student details:
+    - From Hyderabad city: male students who scored more than 70 and female students who scored more than 50.
+    - From Pune: only male students.
+Ans: 
+SELECT * 
+FROM student 
+WHERE (city = 'Hyderabad' AND gender = 'male' AND marks >= 70) 
+   OR (city = 'Hyderabad' AND gender = 'female' AND marks >= 50) 
+   OR (city = 'Pune' AND gender = 'male');
+
+Q5. Display student details whose score is between 50 and 80, and city should be Hyderabad or Bangalore
+Ans: 
+SELECT * 
+FROM student 
+WHERE marks BETWEEN 50 AND 80 
+  AND city IN ('Hyderabad', 'Bangalore');
+
+Q6. Display student details whose name starts with 'S' and ends with 'A'
+Ans: 
+SELECT * 
+FROM student 
+WHERE sname LIKE 'S%A';
+
+Q7. Display the number of students in each city
+Ans: 
+SELECT city, COUNT(*) AS "No of Students" 
+FROM student 
+GROUP BY city;
+
+Q8. Find the best city in education based on average score
+Ans: 
+SELECT city, AVG(marks) AS "Average Score" 
+FROM student 
+GROUP BY city 
+ORDER BY "Average Score" DESC 
+LIMIT 1;
+
+Q9. Display the top score in each city
+Ans: 
+SELECT city, MAX(marks) AS "Top Score" 
+FROM student 
+GROUP BY city 
+ORDER BY MAX(marks) DESC;
+
+Q10. Display the topper's details in Hyderabad
+Ans: 
+SELECT * 
+FROM student 
+WHERE city = 'Hyderabad' 
+ORDER BY marks DESC 
+LIMIT 1;
